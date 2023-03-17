@@ -6,8 +6,8 @@ import Match from "../model/Match.js";
 export const createClub = async (req, res, next) => {
   const newClub = new Club(req.body);
   const stadium = await Stadium.findById(req.body.stadiumId);
-  // newClub.nameStadium = stadium.name;
-  newClub.logo = req.file.path;
+  newClub.nameStadium = stadium.name;
+  // newClub.logo = req.file.path;
   // console.log(req.file);
   try {
     const saveClub = await newClub.save();
@@ -60,13 +60,13 @@ export const updateClub = async (req, res, next) => {
         next(error);
       }
     }
-    if (req.file) {
-      await Club.findByIdAndUpdate(
-        req.params.id,
-        { logo: req.file.path },
-        { new: true }
-      );
-    }
+    // if (req.file) {
+    //   await Club.findByIdAndUpdate(
+    //     req.params.id,
+    //     { logo: req.file.path },
+    //     { new: true }
+    //   );
+    // }
 
     const updateClub = await Club.findByIdAndUpdate(
       req.params.id,
